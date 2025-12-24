@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST UNIT 2</title>
+
+    <style>
+        body {
+            /* Font mặc định siêu đẹp của Apple + fallback an toàn */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                         'Helvetica Neue', Arial, sans-serif;
+            font-weight: 500; /* nhẹ nhàng, dễ thương hơn */
+            background-color: #fff0f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup {
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            animation: bounceIn 0.5s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1, h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .yes-btn {
+            background-color: #90ee90;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #ff6347;
+            color: white;
+        }
+
+        .main-content {
+            display: none;
+            width: 90%;
+            max-width: 800px;
+            height: 90vh;
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .title {
+            text-align: center;
+            color: #ff69b4;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .three-yes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup đầu tiên -->
+    <div id="firstPopup" class="popup-overlay">
+        <div class="popup">
+            <div class="emoji">🐰✨</div>
+            <h2>Bạn đã sẵn sàng làm bài chưa nhỉ?</h2>
+            <div class="buttons">
+                <button class="yes-btn" onclick="showMain()">Yes</button>
+                <button class="no-btn" onclick="showSecondPopup()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup thứ hai -->
+    <div id="secondPopup" class="popup-overlay" style="display: none;">
+        <div class="popup">
+            <div class="emoji">😤🐥</div>
+            <h2>Ê! Ê! Ê! Sao lại bấm No thế, bấm Yes làm bài đi chứ!</h2>
+            <div class="three-yes">
+                <button class="yes-btn" onclick="showMain()">Yes</button>
+                <button class="yes-btn" onclick="showMain()">Yes</button>
+                <button class="yes-btn" onclick="showMain()">Yes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Giao diện chính -->
+    <div id="mainContent" class="main-content">
+        <h1 class="title">CHÚC BẠN LÀM BÀI TỐT NHÉ!</h1>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSef24d9EPtlxA0b3Y77-Zwu1iFugtYsE-xXnhzAxu0OFY_P8A/viewform?usp=header&embedded=true" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        function showMain() {
+            document.getElementById('firstPopup').style.display = 'none';
+            document.getElementById('secondPopup').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.body.style.backgroundColor = '#f0f8ff';
+        }
+
+        function showSecondPopup() {
+            document.getElementById('firstPopup').style.display = 'none';
+            document.getElementById('secondPopup').style.display = 'flex';
+        }
+    </script>
+
+</body>
+</html>
